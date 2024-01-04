@@ -1,8 +1,5 @@
 
 
-print("asd")
-
-Workspace {
-    Name = "Test"
+Workspace("Test") {
     SourceDir = "./src"
 }
