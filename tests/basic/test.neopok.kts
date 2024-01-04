@@ -3,6 +3,6 @@
 print("asd")
 
 Workspace {
-    name = "Test"
-    sourceDir = "./src"
+    Name = "Test"
+    SourceDir = "./src"
 }

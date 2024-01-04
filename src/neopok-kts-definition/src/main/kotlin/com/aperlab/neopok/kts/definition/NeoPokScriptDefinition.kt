@@ -1,5 +1,6 @@
 package com.aperlab.neopok.kts.definition
 
+import com.aperlab.neopok.model.Workspace
 import kotlin.script.experimental.annotations.KotlinScript
 
 @KotlinScript(
@@ -8,7 +9,7 @@ import kotlin.script.experimental.annotations.KotlinScript
 )
 abstract class NeoPokScriptDefinition {
 
-    fun Workspace( ) = Unit;
+    fun Workspace(configure: Workspace.()->Unit ) = Unit;
 
 }
 
