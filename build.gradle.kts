@@ -15,21 +15,14 @@ subprojects{
 
     apply(plugin = "java")
 
-    configure<JavaPluginConvention> {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-    }
-
     tasks {
-
-        // Preserve parameter names in the bytecode
-        withType<JavaCompile>().configureEach {
-            options.compilerArgs.add("-parameters")
+        withType<JavaCompile> {
+            options.release = 17
         }
 
-        withType<KotlinCompile>().configureEach {
+        withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = "1.8"
-                freeCompilerArgs = listOf("-java-parameters")
+                jvmTarget = "17"
             }
         }
     }

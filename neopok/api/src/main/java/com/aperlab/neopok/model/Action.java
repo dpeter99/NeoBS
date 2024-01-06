@@ -1,7 +1,8 @@
 package com.aperlab.neopok.model;
 
 @SamWithReceiver
-public interface Action<T> {
+public interface Action {
 
-    void execute(T subject);
+    void execute();
+
 }

@@ -8,9 +8,8 @@ import kotlin.script.experimental.api.ScriptDiagnostic
 import kotlin.script.experimental.api.constructorArgs
 import kotlin.script.experimental.host.toScriptSource
 import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
-import kotlin.script.experimental.jvmhost.createJvmCompilationConfigurationFromTemplate
 
-class LoaderPlugin(val runner: Runner) : ILoaderPlugin {
+class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
 
 
@@ -22,6 +21,10 @@ class LoaderPlugin(val runner: Runner) : ILoaderPlugin {
                 println(" : ${it.message}" + if (it.exception == null) "" else ": ${it.exception}")
             }
         }
+    }
+
+    override fun CanLoad(f: File?): Boolean {
+        return f?.endsWith("neopok.kts") ?: false;
     }
 
 

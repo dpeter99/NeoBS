@@ -1,7 +1,5 @@
 package com.aperlab.neopok.model;
 
-import kotlin.Lazy;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -9,7 +7,7 @@ import java.util.Optional;
 public class Project implements ExtensionAware {
     public String Name;
 
-    public Optional<Lazy<Optional<Project>>> Parent;
+    //public Optional<Lazy<Optional<Project>>> Parent;
 
     private Map<String, Target> targets = new HashMap<>();
 

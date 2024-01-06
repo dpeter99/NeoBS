@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/neopok" />
             <option value="$PROJECT_DIR$/neopok/api" />
+            <option value="$PROJECT_DIR$/neopok/host" />
             <option value="$PROJECT_DIR$/neopok/kts" />
             <option value="$PROJECT_DIR$/neopok/kts/definition" />
             <option value="$PROJECT_DIR$/neopok/kts/extension" />
@@ -18,6 +19,5 @@
         </option>
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>

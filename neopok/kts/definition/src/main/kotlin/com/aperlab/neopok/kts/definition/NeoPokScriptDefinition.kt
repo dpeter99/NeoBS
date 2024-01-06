@@ -12,13 +12,13 @@ import kotlin.script.experimental.annotations.KotlinScript
 )
 abstract class NeoPokScriptDefinition(val runner: Runner) {
 
-    fun Workspace(name: String,configure: Workspace.()->Unit ) {
+    fun Workspace(name: String, configure: Workspace.()->Unit ) {
         val w = Workspace(name);
         configure.invoke(w);
         runner.SetWorkspace(w);
     };
 
-    fun Project(name: String,configure: Project.()->Unit ) {
+    fun Project(name: String, configure: Project.()->Unit ) {
         val p = Project(name);
         configure.invoke(p);
         runner.GetWorkspace().AddProject(p);

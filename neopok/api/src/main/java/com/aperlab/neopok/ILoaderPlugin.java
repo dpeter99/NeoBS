@@ -6,4 +6,5 @@ public interface ILoaderPlugin {
 
     void LoadFile(File file);
 
+    boolean CanLoad(File f);
 }

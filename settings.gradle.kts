@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.support.listFilesOrdered
-
 pluginManagement {
     plugins {
         kotlin("jvm") version "1.9.22"
@@ -12,6 +10,7 @@ rootProject.name = "NeoPok"
 
 include(
         "neopok:api",
+        "neopok:host",
         "neopok:kts:definition",
         "neopok:kts:extension"
 )
