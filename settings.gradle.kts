@@ -6,11 +6,11 @@ pluginManagement {
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
-rootProject.name = "NeoPok"
+rootProject.name = "neobs"
 
 include(
-        "neopok:api",
-        "neopok:host",
-        "neopok:kts:definition",
-        "neopok:kts:extension"
+        "neobs:api",
+        "neobs:host",
+        /*"neobs:kts:definition",*/
+        "neobs:kts:extension"
 )
