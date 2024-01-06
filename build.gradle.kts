@@ -1,16 +1,16 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.ir.backend.js.compile
-
 plugins {
     kotlin("jvm") //apply false
 }
 
-java{
+java {
     withSourcesJar()
 }
 
-subprojects{
+repositories {
+    mavenCentral()
+}
 
+subprojects {
     group = "com.aperlab.neobs"
     version = "1.0-SNAPSHOT"
 
