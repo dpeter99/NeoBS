@@ -13,7 +13,7 @@ public class CmdAction implements Action {
 
         try {
             new ProcessBuilder()
-                    .command(Command)
+                    .command("sh", "-c", Command)
                     .inheritIO()
                     .start();
         } catch (IOException e) {

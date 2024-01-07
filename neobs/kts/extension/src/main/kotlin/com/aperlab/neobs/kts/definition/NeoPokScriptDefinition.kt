@@ -19,9 +19,11 @@ abstract class neobsScriptDefinition(val runner: Runner) {
     };
 
     fun Project(name: String, configure: Project.()->Unit ) {
-        val p = Project(name);
+        val workspace = runner.GetWorkspace();
+
+        val p = Project(workspace, name);
         configure.invoke(p);
-        runner.GetWorkspace().AddProject(p);
+        workspace.AddProject(p);
     };
 
 }

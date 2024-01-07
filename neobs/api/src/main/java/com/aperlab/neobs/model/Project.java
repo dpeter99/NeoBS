@@ -1,29 +1,38 @@
 package com.aperlab.neobs.model;
 
+import com.aperlab.neobs.ID;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class Project implements ExtensionAware {
     public String Name;
 
-    //public Optional<Lazy<Optional<Project>>> Parent;
+    public ID id;
 
-    private Map<String, Target> targets = new HashMap<>();
+    public Workspace workspace;
 
-    public Project(String name) {
+    private Map<ID, Target> targets = new HashMap<>();
+
+    public Project(Workspace w, String name) {
+        workspace = w;
         Name = name;
+        id = ID.of(workspace, this);
     }
 
-    public String getID(){
-        return Name;
+    public ID getID(){
+        return id;
     }
 
-    public void AddTarget(Target t){
-        targets.put(t.Name, t);
+    public void addTarget(Target t){
+        targets.put(t.id, t);
     }
 
     public void PrintStructure() {
-        System.out.println(Name);
+        System.out.println(id);
+    }
+
+    public Target getTarget(ID id) {
+        return targets.get(id);
     }
 }

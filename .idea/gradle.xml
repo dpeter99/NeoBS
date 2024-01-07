@@ -13,11 +13,11 @@
             <option value="$PROJECT_DIR$/neobs/api" />
             <option value="$PROJECT_DIR$/neobs/host" />
             <option value="$PROJECT_DIR$/neobs/kts" />
+            <option value="$PROJECT_DIR$/neobs/kts/definition" />
             <option value="$PROJECT_DIR$/neobs/kts/extension" />
           </set>
         </option>
       </GradleProjectSettings>
     </option>
-    <option name="offlineMode" value="true" />
   </component>
 </project>

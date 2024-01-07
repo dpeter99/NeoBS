@@ -1,7 +1,7 @@
 package com.aperlab.neobs.kts.definition
 
 import com.aperlab.neobs.Runner
-import com.aperlab.neobs.model.Project
+import com.aperlab.neobs.model.Project as ProjectModel
 import com.aperlab.neobs.model.Workspace
 import kotlin.script.experimental.annotations.KotlinScript
 
@@ -17,10 +17,11 @@ abstract class neobsScriptDefinition(val runner: Runner) {
         runner.SetWorkspace(w)
     };
 
-    fun Project(name: String, configure: Project.() -> Unit) {
-        val p = Project(name)
+    fun Project(name: String, configure: ProjectModel.() -> Unit) {
+        val workspace = runner.GetWorkspace()
+        val p = ProjectModel(workspace, name)
         configure.invoke(p)
-        runner.GetWorkspace().AddProject(p)
+        workspace.AddProject(p)
     };
 
 }

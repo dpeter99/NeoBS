@@ -1,5 +1,6 @@
 package com.aperlab.neobs;
 
+import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
 import com.aperlab.neobs.plugin.IPlugin;
 import com.aperlab.neobs.util.Lazy;
@@ -42,6 +43,20 @@ public class Runner {
         }
     }
 
+    public Target findTarget(String target) {
+        ID id = ID.of(target);
+        if(!id.isTarget()){
+            //throw new Exception("ID is not a valid target ID");
+            System.out.println("ID is not a valid target ID");
+            return null;
+        }
+        Target t = workspace.findTarget(id);
+
+        return t;
+    }
+
+
+
     private void loadWorkspace(File workspace_folder) {
         File[] filesList = workspace_folder.listFiles();
         if(filesList == null) {
@@ -60,6 +75,8 @@ public class Runner {
         System.out.println("Loading workspace file " + file.file.getName() + " with plugin " + file.plugin.getClass().getName());
         file.plugin.LoadFile(file.file);
     }
+
+
 
     static class FileWithLoader {
 

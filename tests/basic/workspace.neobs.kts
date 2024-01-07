@@ -1,5 +1,5 @@
 
 
-Workspace("Test") {
+Workspace("test") {
     SourceDir = "./src"
 }

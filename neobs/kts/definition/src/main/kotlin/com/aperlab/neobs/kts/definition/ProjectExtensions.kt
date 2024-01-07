@@ -7,9 +7,9 @@ import com.aperlab.neobs.model.Workspace
 import com.aperlab.neobs.model.Target as TargetModel
 
 fun Project.Target(name: String, configure: TargetModel.()->Unit){
-    val t = TargetModel();
+    val t = TargetModel(id.withTarget(name));
     configure.invoke(t);
-    this.AddTarget(t)
+    this.addTarget(t)
 }
 
 fun Target.CmdAction(configure: CmdAction.()->Unit){
