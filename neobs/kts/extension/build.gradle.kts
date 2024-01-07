@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     api(project(":neobs:api"))
+    implementation(project(":neobs:kts:definition"))
 
     implementation("org.jetbrains.kotlin:kotlin-scripting-common")
     implementation("org.jetbrains.kotlin:kotlin-scripting-jvm")
