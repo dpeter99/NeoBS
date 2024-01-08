@@ -18,6 +18,10 @@ subprojects {
         mavenCentral()
     }
 
+    tasks.withType<Jar>{
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+
     /*
     tasks {
         withType<JavaCompile> {

@@ -27,7 +27,7 @@ public class Runner {
         loader.forEach(p -> p.RegisterExtensions(this));
     }
 
-    public void openWorkspace(File workspace_folder) {
+    public void openWorkspace(File workspace_folder) throws WorkspaceNotFoundException {
         loadWorkspace(workspace_folder);
 
         try (Stream<Path> walkStream = Files.walk(Paths.get(workspace.SourceDir))) {
@@ -57,18 +57,18 @@ public class Runner {
 
 
 
-    private void loadWorkspace(File workspace_folder) {
+    private void loadWorkspace(File workspace_folder) throws WorkspaceNotFoundException {
         File[] filesList = workspace_folder.listFiles();
         if(filesList == null) {
             System.out.println("No files found in workspace folder: " + workspace_folder.getAbsolutePath());
-            return;
+            throw new WorkspaceNotFoundException();
         }
 
         Optional<FileWithLoader> files = filterLoadableFiles(Arrays.stream(filesList), "workspace").findFirst();
 
         if (files.isEmpty()) {
             System.out.println("No valid workspace file found");
-            return;
+            throw new WorkspaceNotFoundException();
         }
 
         FileWithLoader file = files.get();
