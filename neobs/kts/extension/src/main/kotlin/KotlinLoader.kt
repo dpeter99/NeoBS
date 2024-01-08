@@ -1,13 +1,14 @@
+import com.aperlab.neobs.FileLoadingException
 import com.aperlab.neobs.ILoaderPlugin
 import com.aperlab.neobs.Runner
 import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
-import kotlin.script.experimental.api.EvaluationResult
-import kotlin.script.experimental.api.ResultWithDiagnostics
-import kotlin.script.experimental.api.ScriptDiagnostic
-import kotlin.script.experimental.api.constructorArgs
+import kotlin.script.experimental.api.*
 import kotlin.script.experimental.host.toScriptSource
+import kotlin.script.experimental.jvm.dependenciesFromCurrentContext
+import kotlin.script.experimental.jvm.jvm
 import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
+import kotlin.script.experimental.jvmhost.createJvmCompilationConfigurationFromTemplate
 
 class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
@@ -18,8 +19,12 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
         res.reports.forEach {
             if (it.severity > ScriptDiagnostic.Severity.WARNING) {
-                println(" : ${it.message}" + if (it.exception == null) "" else ": ${it.exception}")
+                println(" : ${it.message}" + if (it.exception == null) "" else ": ${it.exception} ${it.location} ${it.sourcePath}")
             }
+        }
+
+        if(res.reports.any { it.severity > ScriptDiagnostic.Severity.WARNING }){
+            throw FileLoadingException("Errors while running kts script")
         }
     }
 
@@ -29,10 +34,17 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
 
     fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
-        //val compilationConfiguration = createJvmCompilationConfigurationFromTemplate<neobsScriptDefinition>()
-        return BasicJvmScriptingHost().evalWithTemplate<NeoBSScriptDefinition>(scriptFile.toScriptSource(), evaluation = {
-            constructorArgs(runner)
-        })
+        return BasicJvmScriptingHost().evalWithTemplate<NeoBSScriptDefinition>(
+                scriptFile.toScriptSource(),
+                compilation = {
+                    jvm {
+                        dependenciesFromCurrentContext(wholeClasspath = true)
+                    }
+                    compilerOptions.append("-Xadd-modules=ALL-MODULE-PATH")
+                },
+                evaluation = {
+                    constructorArgs(runner)
+                })
     }
 
 }

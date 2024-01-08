@@ -1,5 +1,6 @@
 package com.aperlab.neobs.host;
 
+import com.aperlab.neobs.FileLoadingException;
 import com.aperlab.neobs.Runner;
 import com.aperlab.neobs.WorkspaceNotFoundException;
 import com.aperlab.neobs.model.Target;
@@ -20,13 +21,13 @@ public class BuildCommand implements Callable<Integer> {
     private NeoBSHost mainCmd;
 
     @Override
-    public Integer call() throws Exception {
+    public Integer call() {
 
         Runner runner = new Runner();
 
         try {
             runner.openWorkspace(mainCmd.workspaceFolder);
-        } catch (WorkspaceNotFoundException e) {
+        } catch (WorkspaceNotFoundException | FileLoadingException e) {
             return 1;
         }
 

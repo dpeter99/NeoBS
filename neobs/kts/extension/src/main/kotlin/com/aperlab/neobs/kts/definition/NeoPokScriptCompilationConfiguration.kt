@@ -16,6 +16,7 @@ object neobsScriptCompilationConfiguration : ScriptCompilationConfiguration(
                 // Extract the whole classpath from context classloader and use it as dependencies
                 dependenciesFromCurrentContext(wholeClasspath = true)
             }
+            compilerOptions.append("-Xadd-modules=ALL-MODULE-PATH")
             // Callbacks
             refineConfiguration {
                 // Process specified annotations with the provided handler

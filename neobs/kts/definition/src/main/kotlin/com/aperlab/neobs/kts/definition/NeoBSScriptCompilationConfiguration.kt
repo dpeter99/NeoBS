@@ -12,7 +12,7 @@ object NeoBSScriptCompilationConfiguration : ScriptCompilationConfiguration(
             defaultImports("com.aperlab.neobs.kts.definition.*")
             jvm {
                 // Extract the whole classpath from context classloader and use it as dependencies
-                dependenciesFromCurrentContext(wholeClasspath = true)
+                dependenciesFromCurrentContext(wholeClasspath = true, unpackJarCollections = true)
             }
             // Callbacks
             refineConfiguration {

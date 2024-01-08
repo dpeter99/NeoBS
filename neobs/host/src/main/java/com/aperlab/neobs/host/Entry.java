@@ -18,7 +18,6 @@ public class Entry {
                 .addSubcommand(new BuildCommand())
                 .execute(args);
 
-
     }
 
 }
