@@ -3,12 +3,11 @@ package com.aperlab.neobs.kts.definition
 import com.aperlab.neobs.Runner
 import com.aperlab.neobs.model.Project
 import com.aperlab.neobs.model.Workspace
-import java.util.Optional
 import kotlin.script.experimental.annotations.KotlinScript
 
 @KotlinScript(
         fileExtension = "neobs.kts",
-        compilationConfiguration = neobsScriptCompilationConfiguration::class
+        compilationConfiguration = NeoBSScriptCompilationConfiguration::class
 )
 abstract class neobsScriptDefinition(val runner: Runner) {
 

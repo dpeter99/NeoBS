@@ -1,6 +1,6 @@
 import com.aperlab.neobs.ILoaderPlugin
 import com.aperlab.neobs.Runner
-import com.aperlab.neobs.kts.definition.neobsScriptDefinition
+import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
 import kotlin.script.experimental.api.EvaluationResult
 import kotlin.script.experimental.api.ResultWithDiagnostics
@@ -30,7 +30,7 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
     fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
         //val compilationConfiguration = createJvmCompilationConfigurationFromTemplate<neobsScriptDefinition>()
-        return BasicJvmScriptingHost().evalWithTemplate<neobsScriptDefinition>(scriptFile.toScriptSource(), evaluation = {
+        return BasicJvmScriptingHost().evalWithTemplate<NeoBSScriptDefinition>(scriptFile.toScriptSource(), evaluation = {
             constructorArgs(runner)
         })
     }

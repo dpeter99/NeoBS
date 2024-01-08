@@ -1,14 +1,12 @@
 package com.aperlab.neobs.kts.definition
 
-import kotlinx.coroutines.runBlocking
 import kotlin.script.experimental.api.*
-import kotlin.script.experimental.dependencies.*
-import kotlin.script.experimental.dependencies.maven.MavenDependenciesResolver
-import kotlin.script.experimental.jvm.JvmDependency
+import kotlin.script.experimental.jvm.dependenciesFromClassContext
 import kotlin.script.experimental.jvm.dependenciesFromCurrentContext
 import kotlin.script.experimental.jvm.jvm
 
-object neobsScriptCompilationConfiguration : ScriptCompilationConfiguration(
+
+object NeoBSScriptCompilationConfiguration : ScriptCompilationConfiguration(
         {
             // Implicit imports for all scripts of this type
             defaultImports("com.aperlab.neobs.kts.definition.*")

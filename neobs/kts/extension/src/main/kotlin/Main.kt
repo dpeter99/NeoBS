@@ -1,5 +1,5 @@
 import com.aperlab.neobs.Runner
-import com.aperlab.neobs.kts.definition.neobsScriptDefinition
+import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
 import kotlin.script.experimental.api.EvaluationResult
 import kotlin.script.experimental.api.ResultWithDiagnostics
@@ -28,6 +28,6 @@ fun main(vararg args: String) {
 
 
 fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
-    val compilationConfiguration = createJvmCompilationConfigurationFromTemplate<neobsScriptDefinition>()
+    val compilationConfiguration = createJvmCompilationConfigurationFromTemplate<NeoBSScriptDefinition>()
     return BasicJvmScriptingHost().eval(scriptFile.toScriptSource(), compilationConfiguration, null)
 }

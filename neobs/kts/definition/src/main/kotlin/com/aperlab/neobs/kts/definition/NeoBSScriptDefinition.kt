@@ -7,9 +7,9 @@ import kotlin.script.experimental.annotations.KotlinScript
 
 @KotlinScript(
     fileExtension = "neobs.kts",
-    compilationConfiguration = neobsScriptCompilationConfiguration::class
+    compilationConfiguration = NeoBSScriptCompilationConfiguration::class
 )
-abstract class neobsScriptDefinition(val runner: Runner) {
+abstract class NeoBSScriptDefinition(val runner: Runner) {
 
     fun Workspace(name: String, configure: Workspace.() -> Unit) {
         val w = Workspace(name)
