@@ -1,19 +1,14 @@
 package com.aperlab.neobs.kts.definition
 
 import com.aperlab.neobs.actions.CmdAction
-import com.aperlab.neobs.model.Project
+import com.aperlab.neobs.model.AbstractProjectImpl
+import com.aperlab.neobs.model.AbstractProjectImpl.AbstractProject
+import com.aperlab.neobs.model.api.IProjectBuilder
 import com.aperlab.neobs.model.Target
-import com.aperlab.neobs.model.Workspace
-import com.aperlab.neobs.model.Target as TargetModel
 
-fun Project.Target(name: String, configure: TargetModel.()->Unit){
-    val t = TargetModel(id.withTarget(name));
+
+fun IProjectBuilder<*>.target(name: String, configure: Target.()->Unit){
+    val t = Target(id.withTarget(name));
     configure.invoke(t);
     this.addTarget(t)
-}
-
-fun Target.CmdAction(configure: CmdAction.()->Unit){
-    val a = CmdAction()
-    configure.invoke(a);
-    actions.add(a);
 }

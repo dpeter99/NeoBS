@@ -9,8 +9,9 @@ plugins {
 rootProject.name = "neobs"
 
 include(
-    "neobs:api",
-    "neobs:host",
-    "neobs:kts:definition",
-    "neobs:kts:extension"
+        "neobs:api",
+        "neobs:host",
+        "neobs:extensions:npm",
+        "neobs:kts:definition",
+        "neobs:kts:plugin"
 )

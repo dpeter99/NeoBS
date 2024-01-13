@@ -1,6 +1,5 @@
 
 
-Workspace("test") {
-    SourceDir = "./src"
-    
+workspace("test"){
+    sourceDir = "./src"
 }

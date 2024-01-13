@@ -1,38 +1,38 @@
 package com.aperlab.neobs.model;
 
-import com.aperlab.neobs.ID;
+import com.aperlab.neobs.NeoKey;
+import com.aperlab.neobs.model.api.IProject;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Workspace {
 
-     public String Name;
-     public String SourceDir;
+     public NeoKey id;
+     public String sourceDir = ".";
 
-     private Map<ID, Project> projects = new HashMap<>();
+     @Getter
+     private Map<NeoKey, IProject<?>> projects = new HashMap<>();
 
      public Workspace(String name) {
-          Name = name;
+          this.id = NeoKey.ofWorkspace(name);
      }
 
-     public void AddProject(Project p){
-          projects.put(p.getID(), p);
+     public void addProject(IProject<?> p){
+         System.out.println("[DEBUG] Adding project" + p.getId());
+          projects.put(p.getId(), p);
      }
 
-     public void PrintStructure() {
-          System.out.println(Name);
-          projects.forEach(((s, project) -> project.PrintStructure()));
-     }
-
-     public Target findTarget(ID id) {
-          ID projectId = id.getProject();
+     public Target findTarget(NeoKey id) {
+          NeoKey projectId = id.getProject();
           if(!projects.containsKey(projectId)){
                 System.out.println("Project: " + projectId + " doesn't exist");
                 return null;
            }
 
-          Project p = projects.get(projectId);
+          IProject<?> p = projects.get(projectId);
           return p.getTarget(id);
      }
+
 }

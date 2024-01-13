@@ -7,6 +7,7 @@ import com.aperlab.neobs.model.Target;
 import picocli.CommandLine;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 @CommandLine.Command(name = "build")
 public class BuildCommand implements Callable<Integer> {
@@ -33,12 +34,15 @@ public class BuildCommand implements Callable<Integer> {
 
         Target target = runner.findTarget(targetId);
 
-        if(target != null) {
-            target.run();
-        }
-        else{
-            System.out.println("Can't find target");
+        if(target == null) {
+            System.out.println("Can't find " + targetId + " run ``neobs vis`` to see all available targets");
             return 1;
+        }
+
+        try {
+            target.run();
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println(e.getMessage());
         }
 
         return 0;

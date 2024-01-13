@@ -22,7 +22,7 @@ fun main(vararg args: String) {
 
         runner.openWorkspace(cwd)
 
-        runner.PrintStructure();
+        //runner.PrintStructure();
     }
 }
 

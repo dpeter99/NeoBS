@@ -4,15 +4,18 @@ import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
 import com.aperlab.neobs.plugin.IPlugin;
 import com.aperlab.neobs.util.Lazy;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
 public class Runner {
+    @Getter
+    @Setter
     Workspace workspace;
 
     public Registry<Lazy<ILoaderPlugin>> loaderRegistry = new Registry<>();
@@ -32,7 +35,7 @@ public class Runner {
         loadWorkspace(workspace_folder);
 
 
-        try (Stream<Path> walkStream = Files.walk(Paths.get(workspace.SourceDir))) {
+        try (Stream<Path> walkStream = Files.walk(workspace_folder.toPath().resolve(workspace.sourceDir))) {
             Stream<FileWithLoader> files = filterLoadableFiles(walkStream.map(Path::toFile), "");
 
             for (FileWithLoader file : files.toArray(FileWithLoader[]::new)) {
@@ -46,7 +49,7 @@ public class Runner {
     }
 
     public Target findTarget(String target) {
-        ID id = ID.of(target);
+        NeoKey id = NeoKey.of(target);
         if(!id.isTarget()){
             //throw new Exception("ID is not a valid target ID");
             System.out.println("ID is not a valid target ID");
@@ -92,7 +95,7 @@ public class Runner {
     }
 
     private Stream<FileWithLoader> filterLoadableFiles(Stream<File> files, String name) {
-        Set<Map.Entry<ID, Lazy<ILoaderPlugin>>> loaderPlugins = loaderRegistry.getEntries();
+        Set<Map.Entry<NeoKey, Lazy<ILoaderPlugin>>> loaderPlugins = loaderRegistry.getEntries();
 
         return files
                 .filter(f -> f.isFile())
@@ -106,16 +109,4 @@ public class Runner {
                 );
     }
 
-    public void SetWorkspace(Workspace w) {
-        workspace = w;
-    }
-
-    public void PrintStructure() {
-        System.out.println("Structure:");
-        workspace.PrintStructure();
-    }
-
-    public Workspace GetWorkspace() {
-        return workspace;
-    }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "proj02",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "echo test"
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "0.25.0"
+  }
+}

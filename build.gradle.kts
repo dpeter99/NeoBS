@@ -21,20 +21,20 @@ subprojects {
     tasks.withType<Jar>{
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
-
-    /*
-    tasks {
-        withType<JavaCompile> {
-            targetCompatibility = "1.8"
-            sourceCompatibility = "1.8"
-        }
-
-        withType<KotlinCompile> {
-            kotlinOptions {
-                jvmTarget = "1.8"
-                freeCompilerArgs = listOf("-java-parameters")
-            }
-        }
-    }
-     */
 }
+
+dependencies {
+    //implementation(kotlin("script-runtime"))
+    implementation(project(":neobs:kts:definition"))
+}
+
+val runDir = rootDir.resolve("tests/basic")
+
+/*
+kotlin {
+    sourceSets.maybeCreate("main").kotlin.apply {
+        srcDir(runDir)
+        srcDir(rootDir.resolve("include"))
+    }
+}
+*/

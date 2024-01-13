@@ -7,6 +7,8 @@ plugins {
 dependencies {
     api(project(":neobs:api"))
 
+    implementation(kotlin("reflect"))
+
     implementation("org.jetbrains.kotlin:kotlin-scripting-common")
     implementation("org.jetbrains.kotlin:kotlin-scripting-jvm")
     implementation("org.jetbrains.kotlin:kotlin-scripting-jvm-host")

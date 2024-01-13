@@ -1,22 +1,38 @@
 package com.aperlab.neobs.model;
 
-import com.aperlab.neobs.ID;
+import com.aperlab.neobs.NeoKey;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class Target {
 
-    public ID id;
+    public NeoKey id;
     public List<Action> actions = new ArrayList<>();
 
-    public Target(ID id) {
+    public Target(NeoKey id) {
         this.id = id;
     }
 
-    public void run() {
+    public void run() throws InterruptedException, ExecutionException {
+        System.out.println("Running target: " + id);
+
         for (Action action : actions) {
-            action.execute();
+            CompletableFuture<Boolean> future = action.execute();
+            boolean res;
+            synchronized (future) {
+                res = future.get();
+            }
+            if(!res){
+                System.out.println("Action did not run successfully");
+                break;
+            }
         }
+    }
+
+    public void addAction(Action action) {
+        actions.add(action);
     }
 }

@@ -13,6 +13,7 @@ application {
 
 tasks.run.configure {
     workingDir = rootProject.file("tests/basic")
+    args("vis")
 }
 
 dependencies {
@@ -21,5 +22,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
     annotationProcessor("info.picocli:picocli-codegen:4.7.5")
 
-    implementation(project(":neobs:kts:extension"))
+    implementation("hu.webarticum:tree-printer:3.2.0")
+
+    runtimeOnly(project(":neobs:kts:plugin"))
+    runtimeOnly(project(":neobs:extensions:npm"))
 }

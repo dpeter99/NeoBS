@@ -6,6 +6,7 @@ import com.aperlab.neobs.WorkspaceNotFoundException;
 import com.aperlab.neobs.model.Target;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
@@ -26,13 +27,17 @@ public class Main {
         Target target = runner.findTarget(targetId);
 
         if(target != null) {
-            target.run();
+            try {
+                target.run();
+            } catch (InterruptedException | ExecutionException e) {
+                System.out.println(e.getMessage());
+            }
         }
         else{
             System.out.println("Can't find target");
         }
 
-        runner.PrintStructure();
+        //runner.PrintStructure();
     }
 
 }

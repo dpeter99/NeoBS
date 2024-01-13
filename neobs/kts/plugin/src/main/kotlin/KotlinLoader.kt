@@ -3,6 +3,8 @@ import com.aperlab.neobs.ILoaderPlugin
 import com.aperlab.neobs.Runner
 import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
+import java.lang.reflect.InvocationTargetException
+import kotlin.io.path.Path
 import kotlin.script.experimental.api.*
 import kotlin.script.experimental.host.toScriptSource
 import kotlin.script.experimental.jvm.dependenciesFromCurrentContext
@@ -15,11 +17,19 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
 
 
     override fun LoadFile(file: File) {
-        var res = evalFile(file);
+
+        val res: ResultWithDiagnostics<EvaluationResult>
+        try {
+            res = evalFile(file);
+        } catch (e: InvocationTargetException) {
+            throw e.targetException
+        }
 
         res.reports.forEach {
             if (it.severity > ScriptDiagnostic.Severity.WARNING) {
-                println(" : ${it.message}" + if (it.exception == null) "" else ": ${it.exception} ${it.location} ${it.sourcePath}")
+                val filePath = Path(it.sourcePath ?: "").fileName.toString();
+                val fileLink = "(${filePath}:${it.location?.start?.line ?: '?'})"
+                println("$fileLink ${it.message}" + if (it.exception == null) "" else ": ${it.exception} ${it.location}")
             }
         }
 
@@ -33,7 +43,7 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
     }
 
 
-    fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
+    private fun evalFile(scriptFile: File): ResultWithDiagnostics<EvaluationResult> {
         return BasicJvmScriptingHost().evalWithTemplate<NeoBSScriptDefinition>(
                 scriptFile.toScriptSource(),
                 compilation = {
@@ -43,7 +53,10 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
                     compilerOptions.append("-Xadd-modules=ALL-MODULE-PATH")
                 },
                 evaluation = {
-                    constructorArgs(runner)
+                    constructorArgs(runner, scriptFile)
+                    jvm{
+
+                    }
                 })
     }
 

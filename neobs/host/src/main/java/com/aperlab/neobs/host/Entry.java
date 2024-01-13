@@ -16,6 +16,7 @@ public class Entry {
                 .setUsageHelpAutoWidth(true)
                 //.setAbbreviatedOptionsAllowed(true)
                 .addSubcommand(new BuildCommand())
+                .addSubcommand(new VisualizeCommand())
                 .execute(args);
 
     }
