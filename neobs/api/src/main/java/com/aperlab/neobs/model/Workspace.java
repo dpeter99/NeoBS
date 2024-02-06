@@ -2,12 +2,36 @@ package com.aperlab.neobs.model;
 
 import com.aperlab.neobs.NeoKey;
 import com.aperlab.neobs.model.api.IProject;
+import com.aperlab.serialization.DataResult;
+import com.aperlab.serialization.Decoder;
+import com.aperlab.serialization.FormatOps;
 import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Workspace {
+
+    public static Decoder<Workspace> decoder = new Decoder<Workspace>() {
+        @Override
+        public <T> DataResult<Workspace> decode(FormatOps<T> ops, T input){
+            var name = ops.getAttributeString(input, "name");
+            if (name.isError()) {
+                name = ops.getLabel(input, 0);
+            }
+            if (name.isError()) {
+                throw new RuntimeException("Workspace name not found");
+            }
+
+            return DataResult.ofSuccess(new Workspace(name.getValue().get()));
+        }
+
+        @Override
+        public String getName() {
+            return "workspace";
+        }
+    };
+
 
      public NeoKey id;
      public String sourceDir = ".";

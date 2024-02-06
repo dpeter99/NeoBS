@@ -13,10 +13,12 @@
             <option value="$PROJECT_DIR$/neobs/api" />
             <option value="$PROJECT_DIR$/neobs/extensions" />
             <option value="$PROJECT_DIR$/neobs/extensions/npm" />
+            <option value="$PROJECT_DIR$/neobs/hcl-lang" />
             <option value="$PROJECT_DIR$/neobs/host" />
             <option value="$PROJECT_DIR$/neobs/kts" />
             <option value="$PROJECT_DIR$/neobs/kts/definition" />
             <option value="$PROJECT_DIR$/neobs/kts/plugin" />
+            <option value="$PROJECT_DIR$/neobs/serialization" />
           </set>
         </option>
       </GradleProjectSettings>

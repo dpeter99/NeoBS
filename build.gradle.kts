@@ -8,6 +8,10 @@ java {
 
 repositories {
     mavenCentral()
+
+    maven {
+        url = uri("https://libraries.minecraft.net")
+    }
 }
 
 subprojects {

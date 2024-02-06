@@ -15,3 +15,7 @@ include(
         "neobs:kts:definition",
         "neobs:kts:plugin"
 )
+include("neobs:hcl-lang")
+findProject(":neobs:hcl-lang")?.name = "hcl-lang"
+include("neobs:serialization")
+findProject(":neobs:serialization")?.name = "serialization"

@@ -3,7 +3,9 @@ package com.aperlab.neobs;
 import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
 import com.aperlab.neobs.plugin.IPlugin;
+import com.aperlab.neobs.registry.MappedRegistry;
 import com.aperlab.neobs.util.Lazy;
+import com.aperlab.serialization.Decoder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +22,11 @@ public class Runner {
 
     public Registry<Lazy<ILoaderPlugin>> loaderRegistry = new Registry<>();
 
+    public MappedRegistry<Decoder<?>, String> codecRegistry = new MappedRegistry<>(Decoder::getName);
+
     public Runner() {
+        BuiltinRegistry.register(this);
+
         ServiceLoader<IPlugin> loader = ServiceLoader.load(IPlugin.class);
 
         for (IPlugin plugin : loader) {

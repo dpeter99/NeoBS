@@ -26,4 +26,5 @@ dependencies {
 
     runtimeOnly(project(":neobs:kts:plugin"))
     runtimeOnly(project(":neobs:extensions:npm"))
+    runtimeOnly(project(":neobs:hcl-lang"))
 }

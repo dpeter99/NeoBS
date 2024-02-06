@@ -45,9 +45,14 @@ public class NeoKey implements Comparable<NeoKey>{
 
         String repo = parts[0].replace(ABSOLUTE_STARTER, ' ').trim();
 
-        String path = parts[1].split(String.valueOf(TARGET_SEPARATOR))[0];
+        String[] pathAndTarget = parts[1].split(String.valueOf(TARGET_SEPARATOR));
+        String path = pathAndTarget[0];
 
-        String target = parts[1].split(String.valueOf(TARGET_SEPARATOR))[1];
+        if(pathAndTarget.length == 1){
+            return new NeoKey(repo, path);
+        }
+
+        String target = pathAndTarget[1];
 
         return new NeoKey(repo, path, target);
     }
