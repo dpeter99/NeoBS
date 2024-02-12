@@ -1,11 +1,15 @@
 package com.aperlab.neobs;
 
+import com.aperlab.neobs.loader.FileLoadingException;
+import com.aperlab.neobs.loader.ILoaderPlugin;
 import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
 import com.aperlab.neobs.plugin.IPlugin;
+import com.aperlab.neobs.plugin.PluginManager;
 import com.aperlab.neobs.registry.MappedRegistry;
-import com.aperlab.neobs.util.Lazy;
+import com.aperlab.neobs.registry.Registry;
 import com.aperlab.serialization.Decoder;
+import com.aperlab.utils.Lazy;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +19,10 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class Runner {
+public class NeoBS {
+
+    PluginManager pluginManager;
+
     @Getter
     @Setter
     Workspace workspace;
@@ -24,16 +31,11 @@ public class Runner {
 
     public MappedRegistry<Decoder<?>, String> codecRegistry = new MappedRegistry<>(Decoder::getName);
 
-    public Runner() {
+    public NeoBS() {
         BuiltinRegistry.register(this);
 
-        ServiceLoader<IPlugin> loader = ServiceLoader.load(IPlugin.class);
-
-        for (IPlugin plugin : loader) {
-            System.out.println("Found plugin: " + plugin.getClass().getName());
-        }
-
-        loader.forEach(p -> p.RegisterExtensions(this));
+        pluginManager = new PluginManager(this);
+        pluginManager.LoadPlugins();
     }
 
     public void openWorkspace(File workspace_folder) throws WorkspaceNotFoundException, FileLoadingException {

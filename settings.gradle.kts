@@ -19,3 +19,5 @@ include("neobs:hcl-lang")
 findProject(":neobs:hcl-lang")?.name = "hcl-lang"
 include("neobs:serialization")
 findProject(":neobs:serialization")?.name = "serialization"
+include("neobs:utils")
+findProject(":neobs:utils")?.name = "utils"

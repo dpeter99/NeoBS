@@ -1,4 +1,4 @@
-package com.aperlab.neobs.util;
+package com.aperlab.utils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

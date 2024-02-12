@@ -1,10 +1,6 @@
 package com.aperlab.neobs.host;
 
-import com.aperlab.neobs.Runner;
-import com.aperlab.neobs.model.Target;
 import picocli.CommandLine;
-
-import java.io.File;
 
 public class Entry {
 

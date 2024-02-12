@@ -14,9 +14,9 @@ public class HclFormatOps implements FormatOps<Node> {
     }
 
     @Override
-    public DataResult<Node> get(String key, Node input) {
+    public DataResult<? extends Node> get(String key, Node input) {
         if(input instanceof Node.Declaration.Block block){
-            block.getBody().getDeclarations().stream()
+            return block.getBody().getDeclarations().stream()
                     .filter(d -> d instanceof Node.Declaration.Attribute attribute && attribute.getIdentifier().getLexeme().equals(key))
                     .findFirst()
                     .map(DataResult::ofSuccess)

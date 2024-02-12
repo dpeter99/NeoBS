@@ -1,8 +1,8 @@
 import com.aperlab.neobs.NeoKey
-import com.aperlab.neobs.Runner
+import com.aperlab.neobs.NeoBS
 import com.aperlab.neobs.plugin.IPlugin
 import com.aperlab.neobs.plugin.Plugin
-import com.aperlab.neobs.util.Lazy
+
 import com.google.auto.service.AutoService
 
 
@@ -16,7 +16,7 @@ class KotlinPlugin : IPlugin {
         fun makeID(path: String) = NeoKey.ofPlugin("$id/$path");
     }
 
-    override fun RegisterExtensions(runner: Runner) {
-        runner.loaderRegistry.register(makeID("kts-loader"), Lazy { KotlinLoader(runner) });
+    override fun RegisterExtensions(neoBS: NeoBS) {
+        neoBS.loaderRegistry.register(makeID("kts-loader"), com.aperlab.utils.Lazy { KotlinLoader(neoBS) });
     }
 }

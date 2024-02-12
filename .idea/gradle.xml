@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/neobs/kts/definition" />
             <option value="$PROJECT_DIR$/neobs/kts/plugin" />
             <option value="$PROJECT_DIR$/neobs/serialization" />
+            <option value="$PROJECT_DIR$/neobs/utils" />
           </set>
         </option>
       </GradleProjectSettings>

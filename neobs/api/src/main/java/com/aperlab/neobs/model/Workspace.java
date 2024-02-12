@@ -23,7 +23,11 @@ public class Workspace {
                 throw new RuntimeException("Workspace name not found");
             }
 
-            return DataResult.ofSuccess(new Workspace(name.getValue().get()));
+            Workspace ws = new Workspace(name.getValue().get());
+
+            ws.sourceDir = ops.getAttributeString(input, "sourceDir").orElse(".");
+
+            return DataResult.ofSuccess(ws);
         }
 
         @Override

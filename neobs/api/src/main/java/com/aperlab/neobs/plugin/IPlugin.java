@@ -1,10 +1,10 @@
 package com.aperlab.neobs.plugin;
 
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.NeoBS;
 
 public interface IPlugin {
 
 
-    void RegisterExtensions(Runner runner);
+    void RegisterExtensions(NeoBS neoBS);
 
 }

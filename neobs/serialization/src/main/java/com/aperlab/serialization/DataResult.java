@@ -57,4 +57,8 @@ public class DataResult<A> {
                 error
         );
     }
+
+    public A orElse(A s) {
+        return value.orElse(s);
+    }
 }

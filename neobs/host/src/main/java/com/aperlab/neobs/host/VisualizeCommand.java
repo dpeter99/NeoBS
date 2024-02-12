@@ -1,7 +1,7 @@
 package com.aperlab.neobs.host;
 
-import com.aperlab.neobs.FileLoadingException;
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.loader.FileLoadingException;
+import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.WorkspaceNotFoundException;
 import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
@@ -22,16 +22,16 @@ public class VisualizeCommand implements Callable<Integer> {
     @Override
     public Integer call() {
 
-        Runner runner = new Runner();
+        NeoBS neoBS = new NeoBS();
 
         try {
-            runner.openWorkspace(mainCmd.workspaceFolder);
+            neoBS.openWorkspace(mainCmd.workspaceFolder);
         } catch (WorkspaceNotFoundException | FileLoadingException e) {
             return 1;
         }
 
         SimpleTreeNode rootNode = new SimpleTreeNode("root");
-        rootNode.addChild(print(runner));
+        rootNode.addChild(print(neoBS));
 
         ListingTreePrinter printer = new ListingTreePrinter();
         printer.print(rootNode);
@@ -39,9 +39,9 @@ public class VisualizeCommand implements Callable<Integer> {
         return 0;
     }
 
-    public static TreeNode print(Runner runner){
+    public static TreeNode print(NeoBS neoBS){
         SimpleTreeNode node = new SimpleTreeNode("runner");
-        node.addChild(print(runner.getWorkspace()));
+        node.addChild(print(neoBS.getWorkspace()));
         return node;
     }
 

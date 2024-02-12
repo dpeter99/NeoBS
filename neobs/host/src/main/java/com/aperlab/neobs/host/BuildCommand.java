@@ -1,7 +1,7 @@
 package com.aperlab.neobs.host;
 
-import com.aperlab.neobs.FileLoadingException;
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.loader.FileLoadingException;
+import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.WorkspaceNotFoundException;
 import com.aperlab.neobs.model.Target;
 import picocli.CommandLine;
@@ -24,15 +24,15 @@ public class BuildCommand implements Callable<Integer> {
     @Override
     public Integer call() {
 
-        Runner runner = new Runner();
+        NeoBS neoBS = new NeoBS();
 
         try {
-            runner.openWorkspace(mainCmd.workspaceFolder);
+            neoBS.openWorkspace(mainCmd.workspaceFolder);
         } catch (WorkspaceNotFoundException | FileLoadingException e) {
             return 1;
         }
 
-        Target target = runner.findTarget(targetId);
+        Target target = neoBS.findTarget(targetId);
 
         if(target == null) {
             System.out.println("Can't find " + targetId + " run ``neobs vis`` to see all available targets");

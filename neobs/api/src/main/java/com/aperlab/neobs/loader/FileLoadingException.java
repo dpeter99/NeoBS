@@ -1,4 +1,4 @@
-package com.aperlab.neobs;
+package com.aperlab.neobs.loader;
 
 public class FileLoadingException extends Exception {
 

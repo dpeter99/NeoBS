@@ -1,6 +1,6 @@
-import com.aperlab.neobs.FileLoadingException
-import com.aperlab.neobs.ILoaderPlugin
-import com.aperlab.neobs.Runner
+import com.aperlab.neobs.loader.FileLoadingException
+import com.aperlab.neobs.loader.ILoaderPlugin
+import com.aperlab.neobs.NeoBS
 import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
 import java.lang.reflect.InvocationTargetException
@@ -10,9 +10,8 @@ import kotlin.script.experimental.host.toScriptSource
 import kotlin.script.experimental.jvm.dependenciesFromCurrentContext
 import kotlin.script.experimental.jvm.jvm
 import kotlin.script.experimental.jvmhost.BasicJvmScriptingHost
-import kotlin.script.experimental.jvmhost.createJvmCompilationConfigurationFromTemplate
 
-class KotlinLoader(val runner: Runner) : ILoaderPlugin {
+class KotlinLoader(val neoBS: NeoBS) : ILoaderPlugin {
 
 
 
@@ -53,7 +52,7 @@ class KotlinLoader(val runner: Runner) : ILoaderPlugin {
                     compilerOptions.append("-Xadd-modules=ALL-MODULE-PATH")
                 },
                 evaluation = {
-                    constructorArgs(runner, scriptFile)
+                    constructorArgs(neoBS, scriptFile)
                     jvm{
 
                     }

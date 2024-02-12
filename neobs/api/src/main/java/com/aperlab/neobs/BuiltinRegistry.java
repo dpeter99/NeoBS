@@ -4,9 +4,9 @@ import com.aperlab.neobs.model.Workspace;
 
 public class BuiltinRegistry {
 
-    public static void register(Runner runner) {
+    public static void register(NeoBS neoBS) {
 
-        runner.codecRegistry.register(NeoKey.of("@core//workspace"), Workspace.decoder);
+        neoBS.codecRegistry.register(NeoKey.of("@core//workspace"), Workspace.decoder);
 
     }
 

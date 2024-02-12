@@ -1,10 +1,11 @@
 package com.aperlab.neobs.hcl;
 
 import com.aperlab.neobs.NeoKey;
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.plugin.IPlugin;
 import com.aperlab.neobs.plugin.Plugin;
-import com.aperlab.neobs.util.Lazy;
+
+import com.aperlab.utils.Lazy;
 import com.google.auto.service.AutoService;
 
 @Plugin(ID = "hcl")
@@ -16,7 +17,7 @@ public class HclPlugin implements IPlugin {
     static NeoKey makeID(String path) { return NeoKey.ofPlugin(id+"/"+path); }
 
     @Override
-    public void RegisterExtensions(Runner runner) {
-        runner.loaderRegistry.register(makeID("hcl-loader"), Lazy.of(()->new HclLoader(runner)));
+    public void RegisterExtensions(NeoBS neoBS) {
+        neoBS.loaderRegistry.register(makeID("hcl-loader"), Lazy.of(()->new HclLoader(neoBS)));
     }
 }

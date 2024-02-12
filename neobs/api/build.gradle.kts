@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":neobs:serialization"))
+    implementation(project(":neobs:utils"))
 
     implementation("org.jetbrains:annotations:24.0.0")
 

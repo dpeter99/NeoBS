@@ -1,24 +1,20 @@
 package com.aperlab.neobs.hcl;
 
-import com.aperlab.neobs.FileLoadingException;
-import com.aperlab.neobs.ILoaderPlugin;
+import com.aperlab.neobs.loader.FileLoadingException;
+import com.aperlab.neobs.loader.ILoaderPlugin;
 
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.hcl.parser.HclParser;
 import com.aperlab.neobs.hcl.parser.Node;
-import com.aperlab.neobs.model.Workspace;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 public class HclLoader implements ILoaderPlugin {
 
-    Runner runnner;
+    NeoBS runnner;
 
-    public HclLoader(Runner runnner) {
+    public HclLoader(NeoBS runnner) {
         this.runnner = runnner;
     }
 

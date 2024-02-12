@@ -1,4 +1,4 @@
-import com.aperlab.neobs.Runner
+import com.aperlab.neobs.NeoBS
 import com.aperlab.neobs.kts.definition.NeoBSScriptDefinition
 import java.io.File
 import kotlin.script.experimental.api.EvaluationResult
@@ -15,12 +15,12 @@ fun main(vararg args: String) {
     if (args.size != 1) {
         println("usage: <app> <script file>")
     } else {
-        val runner = Runner()
+        val neoBS = NeoBS()
         //runner.loader = KotlinLoader(runner);
 
         val cwd = File("");
 
-        runner.openWorkspace(cwd)
+        neoBS.openWorkspace(cwd)
 
         //runner.PrintStructure();
     }

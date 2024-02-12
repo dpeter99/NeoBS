@@ -1,7 +1,6 @@
 package com.aperlab.neobs.registry;
 
 import com.aperlab.neobs.NeoKey;
-import com.aperlab.neobs.Registry;
 
 import java.util.HashMap;
 import java.util.Map;

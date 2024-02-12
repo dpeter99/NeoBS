@@ -7,7 +7,7 @@ package com.aperlab.serialization;
 public interface FormatOps<T> {
     T empty();
 
-    DataResult<T> get(String key, T input);
+    DataResult<? extends T> get(String key, T input);
 
     DataResult<String> getStringValue(T input);
 

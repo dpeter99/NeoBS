@@ -1,7 +1,7 @@
 package com.aperlab.neobs.host;
 
-import com.aperlab.neobs.FileLoadingException;
-import com.aperlab.neobs.Runner;
+import com.aperlab.neobs.loader.FileLoadingException;
+import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.WorkspaceNotFoundException;
 import com.aperlab.neobs.model.Target;
 
@@ -20,11 +20,11 @@ public class Main {
 
         String targetId = args[0];
 
-        Runner runner = new Runner();
+        NeoBS neoBS = new NeoBS();
 
-        runner.openWorkspace(new File("."));
+        neoBS.openWorkspace(new File("."));
 
-        Target target = runner.findTarget(targetId);
+        Target target = neoBS.findTarget(targetId);
 
         if(target != null) {
             try {

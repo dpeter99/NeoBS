@@ -5,10 +5,9 @@ plugins {
 dependencies {
     implementation(project(":neobs:api"))
     implementation(project(":neobs:serialization"))
+    implementation(project(":neobs:utils"))
 
-    implementation("com.bertramlabs.plugins:hcl4j:0.7.3")
-
-    //implementation("com.mojang:datafixerupper:1.0.20")
+    implementation("org.jetbrains:annotations:24.0.0")
 
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
