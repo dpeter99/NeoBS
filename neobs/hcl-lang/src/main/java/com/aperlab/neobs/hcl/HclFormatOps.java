@@ -52,10 +52,30 @@ public class HclFormatOps implements FormatOps<Node> {
     }
 
     @Override
+    public DataResult<String> requireAttributeString(Node input, String key) {
+        var name = getAttributeString(input, key);
+        if (name.isError()) {
+            throw new RuntimeException("No attribute for key: " + key);
+        }
+        return name;
+    }
+
+    @Override
     public DataResult<String> getLabel(Node input, int i) {
         if(input instanceof Node.Declaration.Block block){
             return DataResult.ofSuccess(block.getLabels().get(i).getLexeme());
         }
         return DataResult.ofError("Node is not a block");
     }
+
+    @Override
+    public DataResult<String> requireLabel(Node input, int i) {
+        var name = getLabel(input, i);
+        if (name.isError()) {
+            throw new RuntimeException("No label at position:" + i);
+        }
+        return name;
+    }
+
+
 }

@@ -14,5 +14,11 @@ public interface FormatOps<T> {
     DataResult<String> getAttributeString(T input, String key);
     DataResult<Integer> getAttributeInt(T input, String key);
 
+    DataResult<String> requireAttributeString(T input, String key);
+
+
+
     DataResult<String> getLabel(T input, int i);
+
+    DataResult<String> requireLabel(T input, int i);
 }

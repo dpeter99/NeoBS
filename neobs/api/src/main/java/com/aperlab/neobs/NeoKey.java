@@ -112,7 +112,9 @@ public class NeoKey implements Comparable<NeoKey>{
         return new NeoKey(repo, project.get(), name);
     }
 
-    private NeoKey withProject(String p) {
+    public Optional<String> getTargetName(){return this.target;}
+
+    public NeoKey withProject(String p) {
         return new NeoKey(repo, p);
     }
 }

@@ -1,18 +1,19 @@
 package com.aperlab.neobs.model;
 
 import com.aperlab.neobs.NeoKey;
+import com.aperlab.neobs.api.Action;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class Target {
+public class OldTarget {
 
     public NeoKey id;
     public List<Action> actions = new ArrayList<>();
 
-    public Target(NeoKey id) {
+    public OldTarget(NeoKey id) {
         this.id = id;
     }
 

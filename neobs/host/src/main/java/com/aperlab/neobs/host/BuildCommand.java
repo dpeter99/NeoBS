@@ -1,9 +1,9 @@
 package com.aperlab.neobs.host;
 
+import com.aperlab.neobs.api.Target;
 import com.aperlab.neobs.loader.FileLoadingException;
 import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.WorkspaceNotFoundException;
-import com.aperlab.neobs.model.Target;
 import picocli.CommandLine;
 
 import java.util.concurrent.Callable;

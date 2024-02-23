@@ -1,8 +1,7 @@
-package com.aperlab.neobs.model;
+package com.aperlab.neobs.api;
 
 import java.util.concurrent.CompletableFuture;
 
-@SamWithReceiver
 public interface Action {
 
     CompletableFuture<Boolean> execute();

@@ -1,11 +1,11 @@
 package com.aperlab.neobs.host;
 
+import com.aperlab.neobs.api.Target;
 import com.aperlab.neobs.loader.FileLoadingException;
 import com.aperlab.neobs.NeoBS;
 import com.aperlab.neobs.WorkspaceNotFoundException;
-import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
-import com.aperlab.neobs.model.api.IProject;
+import com.aperlab.neobs.api.Project;
 import hu.webarticum.treeprinter.SimpleTreeNode;
 import hu.webarticum.treeprinter.TreeNode;
 import hu.webarticum.treeprinter.printer.listing.ListingTreePrinter;
@@ -53,16 +53,16 @@ public class VisualizeCommand implements Callable<Integer> {
         return node;
     }
 
-    private static TreeNode print(IProject<?> project) {
+    private static TreeNode print(Project project) {
         SimpleTreeNode node = new SimpleTreeNode(project.getId().toString());
-        for (Target target : project.getTargets()) {
+        for (Target target : project.getAllTargets()) {
             node.addChild(print(target));
         }
         return node;
     }
 
     private static TreeNode print(Target target) {
-        SimpleTreeNode node = new SimpleTreeNode(target.id.toString());
+        SimpleTreeNode node = new SimpleTreeNode(target.getId().toString());
         return node;
     }
 }

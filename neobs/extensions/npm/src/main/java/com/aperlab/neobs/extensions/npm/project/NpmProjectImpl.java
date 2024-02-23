@@ -3,19 +3,17 @@ package com.aperlab.neobs.extensions.npm.project;
 import com.aperlab.neobs.NeoKey;
 import com.aperlab.neobs.actions.CmdAction;
 import com.aperlab.neobs.extensions.npm.model.PackageJson;
-import com.aperlab.neobs.model.AbstractProjectImpl;
-import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
-import com.aperlab.neobs.model.api.IProjectSpec;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+/*
 
 public class NpmProjectImpl extends AbstractProjectImpl<NpmProjectImpl, NpmProjectImpl.NpmProject> {
 
@@ -77,3 +75,4 @@ public class NpmProjectImpl extends AbstractProjectImpl<NpmProjectImpl, NpmProje
         super(id);
     }
 }
+*/

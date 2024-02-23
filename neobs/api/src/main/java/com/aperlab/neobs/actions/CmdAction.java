@@ -1,6 +1,6 @@
 package com.aperlab.neobs.actions;
 
-import com.aperlab.neobs.model.Action;
+import com.aperlab.neobs.api.Action;
 
 import java.io.File;
 import java.io.IOException;

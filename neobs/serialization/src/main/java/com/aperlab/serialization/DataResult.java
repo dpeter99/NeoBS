@@ -35,6 +35,11 @@ public class DataResult<A> {
         return value;
     }
 
+    public A get() {
+        return value.get();
+    }
+
+
     public String getError() {
         return error;
     }

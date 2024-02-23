@@ -1,10 +1,10 @@
 package com.aperlab.neobs;
 
+import com.aperlab.neobs.api.ILoadingContext;
+import com.aperlab.neobs.api.Target;
 import com.aperlab.neobs.loader.FileLoadingException;
 import com.aperlab.neobs.loader.ILoaderPlugin;
-import com.aperlab.neobs.model.Target;
 import com.aperlab.neobs.model.Workspace;
-import com.aperlab.neobs.plugin.IPlugin;
 import com.aperlab.neobs.plugin.PluginManager;
 import com.aperlab.neobs.registry.MappedRegistry;
 import com.aperlab.neobs.registry.Registry;
@@ -29,7 +29,7 @@ public class NeoBS {
 
     public Registry<Lazy<ILoaderPlugin>> loaderRegistry = new Registry<>();
 
-    public MappedRegistry<Decoder<?>, String> codecRegistry = new MappedRegistry<>(Decoder::getName);
+    public MappedRegistry<Decoder<?, ILoadingContext>, String> codecRegistry = new MappedRegistry<>(Decoder::getName);
 
     public NeoBS() {
         BuiltinRegistry.register(this);
